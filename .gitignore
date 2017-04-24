@@ -1,0 +1,8 @@
+*.iml
+/yollock-order-dao/*.iml
+/yollock-order-manager/*.iml
+/yollock-order-sdk/*.iml
+/yollock-order-service/*.iml
+/yollock-order-web/*.iml
+/yollock-order-webservice/*.iml
+/yollock-order-worker/*.iml
