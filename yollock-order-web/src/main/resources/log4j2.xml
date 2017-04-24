@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c#%M:%L - %m [%7t][%7r]%n" />
+        </Console>
+        <RollingFile name="FILE" fileName="${profile.log.root.path}/${profile.log.name.web}/${profile.log.name.web}.log"
+            filePattern="${profile.log.root.path}/${profile.log.name.web}/${profile.log.name.web}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c#%M:%L - %m [%7t][%7r]%n" />
+            <Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="${profile.log.maxfilesize}" />
+			</Policies>
+	    	<DefaultRolloverStrategy max="100" />
+        </RollingFile>
+        <Perf4jAppender name="perf4jStatistics" TimeSlice="1800000" fileName="${profile.log.root.path}/${profile.log.name.web}/perfStats.log">
+		    <PatternLayout pattern="%m%n" />
+		</Perf4jAppender>
+    </Appenders>
+
+    <Loggers>
+		<Logger name="log4jdbc.log4j2" level="INFO" additivity="false">
+		    <!-- 取消此处的过滤，可以看到更多详细的日志信息 -->
+		    <MarkerFilter marker="LOG4JDBC_NON_STATEMENT" onMatch="DENY" onMismatch="NEUTRAL"/>
+		    <AppenderRef ref="CONSOLE" />
+		    <AppenderRef ref="FILE" />
+		</Logger>
+        <Root level="${profile.log.root.level}">
+            <AppenderRef ref="CONSOLE" />
+            <AppenderRef ref="FILE" />
+            <AppenderRef ref="perf4jStatistics" />
+        </Root>
+    </Loggers>
+</Configuration>

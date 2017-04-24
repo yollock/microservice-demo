@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+    <mvc:annotation-driven conversion-service="conversionService">
+        <!--  可不设置，使用默认的超时时间 -->
+        <mvc:async-support default-timeout="3000"/>
+    </mvc:annotation-driven>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
+    <!-- 加载属性配置文件 -->
+    <context:property-placeholder location="classpath*:conf/app.properties" ignore-unresolvable="true"/>
+
+    <!-- 扫描指定路径下的对象, 过滤掉没有指定注解的对象 -->
+    <context:component-scan base-package="com.yollock.order.rest" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+
+
+    <!--不合理配置-->
+    <!--schema无效引入：也就是xml头部引入的xsd，很多都是无效的引入，不过切换到idea之后IDE会提示你哪些引入是无效的。-->
+    <!--component-scan会自动加上annotation-config功能，有了component-scan不用再写annotation-config了。参见spring官方reference-->
+    <!--applicationContext.xml中配置了，在springmvc-servlet.xml中又配置了，这样会导致容器中的bean注册两次。-->
+</beans>

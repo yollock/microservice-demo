@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.yollock.order.dao.OrderDaoImpl">
+    <resultMap id="OrderMap" type="Order">
+        <result column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="order_type" property="orderType" jdbcType="DECIMAL"/>
+        <result column="order_type_name" property="orderTypeName" jdbcType="VARCHAR"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="yn" property="yn" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="orderColumns">
+    	id,order_no,order_type,order_type_name,create_user,create_time,update_user,update_time,yn
+    </sql>
+
+    <sql id="orderUsedColumns">
+    	order_no,order_type,order_type_name,create_user,create_time,update_user,update_time,yn
+    </sql>
+
+    <!-- 创建信息 -->
+    <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders(<include refid="orderUsedColumns"/>)
+        VALUES (#{orderNo},#{orderType},#{orderTypeName},#{createUser},#{createTime},#{updateUser},#{updateTime},#{yn})
+    </insert>
+
+    <!-- 修改信息 -->
+    <update id="update" parameterType="Order">
+        <if test="_parameter != null">
+            <if test="id != null and id > 0">
+                update orders set
+                <if test="orderNo != null and orderNo != ''">
+                    order_no = #{orderNo,jdbcType=VARCHAR},
+                </if>
+                <if test="orderType != null">
+                    order_type = #{orderType,jdbcType=DECIMAL},
+                </if>
+                <if test="orderTypeName != null and orderTypeName != ''">
+                    order_type_name = #{orderTypeName,jdbcType=VARCHAR},
+                </if>
+                <if test="updateUser != null and updateUser != ''">
+                    update_user = #{updateUser,jdbcType=VARCHAR},
+                </if>
+                update_time = now()
+                where id = #{id}
+            </if>
+        </if>
+    </update>
+
+    <!-- 根据查询Bean获取数据集合，不带翻页 -->
+    <select id="query" resultMap="OrderMap" parameterType="OrderRequest">
+        select
+        <include refid="orderColumns"/>
+        from orders where
+        <include refid="whereCondition"/>
+    </select>
+
+    <!-- 根据查询Bean获取数据集合，不带翻页 -->
+    <select id="querySome" resultMap="OrderMap" parameterType="OrderRequest">
+        select
+        <include refid="orderColumns"/>
+        from orders where
+        <include refid="whereCondition"/>
+    </select>
+
+    <!-- 根据查询Bean获取数据集合，翻页 -->
+    <select id="queryPage" resultMap="OrderMap" parameterType="OrderRequest">
+        select
+        <include refid="orderColumns"/>
+        from orders where
+        <include refid="whereCondition"/>
+        order by id desc
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <!-- 根据查询Bean获取集合总数 -->
+    <select id="queryCount" resultType="java.lang.Integer" parameterType="OrderRequest">
+        select count(1) from orders where
+        <include refid="whereCondition"/>
+    </select>
+
+    <!-- 删除信息-逻辑删除 -->
+    <update id="delete" parameterType="Order">
+		update orders
+		set yn = 0, update_time = now(), update_user = #{updateUser,jdbcType=VARCHAR}
+		where id = #{id}
+    </update>
+
+    <!-- 常用的查询Where条件 -->
+    <sql id="whereCondition">
+        yn = 1
+        <if test="id != null">
+            and id = #{id,jdbcType=DECIMAL}
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            and order_no = #{orderNo,jdbcType=VARCHAR}
+        </if>
+        <if test="orderType != null">
+            and order_type = #{orderType,jdbcType=DECIMAL}
+        </if>
+        <if test="orderTypeName != null and orderTypeName != ''">
+            and order_type_name = #{orderTypeName,jdbcType=VARCHAR}
+        </if>
+        <if test="createUser != null and createUser != ''">
+            and create_user = #{createUser,jdbcType=VARCHAR}
+        </if>
+        <if test="startTime != null">
+            and update_time >= #{startTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endTime != null">
+            and update_time <![CDATA[<]]> #{endTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateUser != null and updateUser != ''">
+            and update_user = #{updateUser,jdbcType=VARCHAR}
+        </if>
+        <if test="yn != null">
+            and yn = #{yn,jdbcType=DECIMAL}
+        </if>
+    </sql>
+</mapper>

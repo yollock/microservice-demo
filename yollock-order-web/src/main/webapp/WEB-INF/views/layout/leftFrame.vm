@@ -1,0 +1,54 @@
+<a class="menu-toggler" id="menu-toggler" href="#">
+	<span class="menu-text"></span>
+</a>
+<div class="sidebar" id="sidebar">
+	<script type="text/javascript">		
+		function link(c,n,u,pc,pn){
+			document.getElementById("frame-content").src=u;
+        	$("#nav-menu> li > ul >li").each(function(){
+            	$(this).removeClass("active");
+            });
+			
+			$("#nav-menu> li > ul").css("display","none");
+			$("#menu-"+pc+"> ul").css("display","block");
+            
+			var current="#subMenu-"+c;
+			$(current).addClass("active");
+			
+			$("#breadcrumb-first").text(pn);
+			$("#breadcrumb-second").text(n);
+		}
+	</script>
+
+	<ul class="nav nav-list" id="nav-menu">
+		<li>
+			<a href="#springUrl('')/index">
+				<i class="icon-dashboard"></i>
+				<span class="menu-text">平台首页 </span>
+			</a>
+		</li>
+		
+		<li id="menu-20">
+			<a href="javascript:void(0)" class="dropdown-toggle">
+				<i class="icon-desktop"></i>
+				<span class="menu-text">order系统</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+
+			<ul class="submenu">
+				<li id="subMenu-200">
+					<a href="javascript:void(0)" onclick="link('200','order','order','20','order系统');">order</a>
+				</li>
+			</ul>
+		
+		</li>
+	</ul><!-- /.nav-list -->
+
+	<div class="sidebar-collapse" id="sidebar-collapse">
+		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+	</div>
+
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+	</script>
+</div>
