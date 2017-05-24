@@ -44,7 +44,7 @@ $.extend($.jgrid,{
 			email: "這不是有效的e-mail地址",
 			integer: "請輸入有效整數",
 			date: "請輸入有效時間",
-			url: "無效網址。前綴必須為 ('http://' 或 'https://')",
+			url: "無效網址。前綴必須為 ('support.http.resources://' 或 'https://')",
 			nodefined : " 未定義！",
 			novalue : " 需要返回值！",
 			customarray : "自定義函數需要返回數組！",
