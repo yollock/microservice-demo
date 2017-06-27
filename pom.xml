@@ -435,7 +435,7 @@
 
                 <!-- zookeeper配置 -->
                 <profile.schedule.zk.zkConnectString>dev.zookeeper.zk1:2181,dev.zookeeper.zk2:2181,dev.zookeeper.zk3:2181</profile.schedule.zk.zkConnectString>
-                <profile.schedule.zk.rootPath>/letv-schedule/order</profile.schedule.zk.rootPath>
+                <profile.schedule.zk.rootPath>/schedule/order</profile.schedule.zk.rootPath>
                 <profile.schedule.zk.zkSessionTimeout>60000</profile.schedule.zk.zkSessionTimeout>
                 <profile.schedule.zk.userName>ScheduleAdmin</profile.schedule.zk.userName>
                 <profile.schedule.zk.password>password</profile.schedule.zk.password>
@@ -461,22 +461,22 @@
                 <!--数据库配置 -->
                 <profile.db.driver>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</profile.db.driver>
                 <profile.db.url>jdbc:log4jdbc:mysql://10.154.252.107:3306/zx_order?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</profile.db.url>
-                <profile.db.username>letv_shop</profile.db.username>
+                <profile.db.username>shop</profile.db.username>
                 <profile.db.password>shopSr7H1kA8gZ0aG3f</profile.db.password>
 
                 <!-- 外部接口域名配置 -->
-                <profile.interface.domain.mail>dev.mailws.shop.letv.com</profile.interface.domain.mail>
+                <profile.interface.domain.mail>dev.mailws.shop.com</profile.interface.domain.mail>
 
                 <!-- zookeeper配置 -->
                 <profile.schedule.zk.zkConnectString>dev.zookeeper.zk1:2181,dev.zookeeper.zk2:2181,dev.zookeeper.zk3:2181</profile.schedule.zk.zkConnectString>
-                <profile.schedule.zk.rootPath>/letv-schedule/order</profile.schedule.zk.rootPath>
+                <profile.schedule.zk.rootPath>/schedule/order</profile.schedule.zk.rootPath>
                 <profile.schedule.zk.zkSessionTimeout>60000</profile.schedule.zk.zkSessionTimeout>
                 <profile.schedule.zk.userName>ScheduleAdmin</profile.schedule.zk.userName>
                 <profile.schedule.zk.password>password</profile.schedule.zk.password>
 
                 <!-- 服务器日志配置 -->
                 <profile.log.root.level>INFO</profile.log.root.level>
-                <profile.log.root.path>/letv/server/logs</profile.log.root.path>
+                <profile.log.root.path>/server/logs</profile.log.root.path>
                 <profile.log.maxfilesize>100MB</profile.log.maxfilesize>
                 <profile.log.name.web>order</profile.log.name.web>
                 <profile.log.name.webservice>orderws</profile.log.name.webservice>
@@ -500,14 +500,14 @@
 
                 <!-- zookeeper配置 -->
                 <profile.schedule.zk.zkConnectString>test.zookeeper.zk1:2181,test.zookeeper.zk2:2181,test.zookeeper.zk3:2181</profile.schedule.zk.zkConnectString>
-                <profile.schedule.zk.rootPath>/letv-schedule/order</profile.schedule.zk.rootPath>
+                <profile.schedule.zk.rootPath>/schedule/order</profile.schedule.zk.rootPath>
                 <profile.schedule.zk.zkSessionTimeout>60000</profile.schedule.zk.zkSessionTimeout>
                 <profile.schedule.zk.userName>ScheduleAdmin</profile.schedule.zk.userName>
                 <profile.schedule.zk.password>password</profile.schedule.zk.password>
 
                 <!-- 服务器日志配置 -->
                 <profile.log.root.level>INFO</profile.log.root.level>
-                <profile.log.root.path>/letv/server/logs</profile.log.root.path>
+                <profile.log.root.path>/server/logs</profile.log.root.path>
                 <profile.log.maxfilesize>100MB</profile.log.maxfilesize>
                 <profile.log.name.web>order</profile.log.name.web>
                 <profile.log.name.webservice>orderws</profile.log.name.webservice>
@@ -531,14 +531,14 @@
 
                 <!-- zookeeper配置 -->
                 <profile.schedule.zk.zkConnectString>zk01.n.lemall.com:2181,zk02.n.lemall.com:2181,zk03.n.lemall.com:2181,zk04.n.lemall.com:2181,zk05.n.lemall.com:2181</profile.schedule.zk.zkConnectString>
-                <profile.schedule.zk.rootPath>/letv-schedule/order</profile.schedule.zk.rootPath>
+                <profile.schedule.zk.rootPath>/schedule/order</profile.schedule.zk.rootPath>
                 <profile.schedule.zk.zkSessionTimeout>60000</profile.schedule.zk.zkSessionTimeout>
                 <profile.schedule.zk.userName>ScheduleAdmin</profile.schedule.zk.userName>
                 <profile.schedule.zk.password>password</profile.schedule.zk.password>
 
                 <!-- 服务器日志配置 -->
                 <profile.log.root.level>INFO</profile.log.root.level>
-                <profile.log.root.path>/letv/server/logs</profile.log.root.path>
+                <profile.log.root.path>/server/logs</profile.log.root.path>
                 <profile.log.maxfilesize>100MB</profile.log.maxfilesize>
                 <profile.log.name.web>order</profile.log.name.web>
                 <profile.log.name.webservice>orderws</profile.log.name.webservice>
